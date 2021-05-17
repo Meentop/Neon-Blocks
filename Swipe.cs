@@ -16,21 +16,24 @@ public class Swipe : MonoBehaviour, IDragHandler, IBeginDragHandler
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (eventData.delta.x < 0 && eventData.delta.y > 0)
+        if (GameObject.FindGameObjectsWithTag("Player").Length == 1)
         {
-            player.Move(0, ref vertical, ref horizontal);
-        }
-        else if (eventData.delta.x > 0 && eventData.delta.y > 0)
-        {
-            player.Move(1, ref vertical, ref horizontal);
-        }
-        else if (eventData.delta.x > 0 && eventData.delta.y < 0)
-        {
-            player.Move(2, ref vertical, ref horizontal);
-        }
-        else if (eventData.delta.x < 0 && eventData.delta.y < 0)
-        {
-            player.Move(3, ref vertical, ref horizontal);
+            if (eventData.delta.x < 0 && eventData.delta.y > 0)
+            {
+                player.Move(0, ref vertical, ref horizontal);
+            }
+            else if (eventData.delta.x > 0 && eventData.delta.y > 0)
+            {
+                player.Move(1, ref vertical, ref horizontal);
+            }
+            else if (eventData.delta.x > 0 && eventData.delta.y < 0)
+            {
+                player.Move(2, ref vertical, ref horizontal);
+            }
+            else if (eventData.delta.x < 0 && eventData.delta.y < 0)
+            {
+                player.Move(3, ref vertical, ref horizontal);
+            }
         }
     }
 

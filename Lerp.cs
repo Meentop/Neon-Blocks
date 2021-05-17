@@ -15,6 +15,9 @@ public class Lerp : MonoBehaviour
 
     private void Update()
     {
-        transform.position = Vector3.Lerp(target.position, transform.position, speed);
+        if (GameObject.FindGameObjectsWithTag("Player").Length == 1)
+            transform.position = Vector3.Lerp(target.position, transform.position, speed);
+        else
+            Destroy(gameObject);
     }
 }
