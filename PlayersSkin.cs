@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Lerp : MonoBehaviour
+public class PlayersSkin : MonoBehaviour
 {
     [SerializeField] Transform target;
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Swipe : MonoBehaviour, IDragHandler, IBeginDragHandler
+public class PhoneControl : MonoBehaviour, IDragHandler, IBeginDragHandler
 {
     Player player;
 

@@ -10,6 +10,6 @@ public class Spawners : MonoBehaviour
     public void BlockPhaseSpawnEnemy()
     {
         int rand = Random.Range(0, 3);
-        Instantiate(enemy, spawner[rand].position, Quaternion.identity);
+        Instantiate(enemy, spawner[rand].position, enemy.transform.rotation);
     }
 }

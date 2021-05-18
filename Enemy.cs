@@ -4,10 +4,20 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] Vector3 direction;
+    [SerializeField] string destroyerTag;
+
+    float speed = 2;
 
     void Update()
     {
-        transform.Translate(direction * Time.deltaTime);
+        transform.Translate(Vector3.back * Time.deltaTime * speed);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == destroyerTag)
+        {
+            Destroy(gameObject);
+        }
     }
 }
