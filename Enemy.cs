@@ -17,6 +17,7 @@ public class Enemy : MonoBehaviour
     {
         if(other.gameObject.tag == destroyerTag)
         {
+            Score.Enemy--;
             Destroy(gameObject);
         }
     }
