@@ -6,7 +6,13 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] string destroyerTag;
 
-    float speed = 2;
+    float speed;
+
+    private void Start()
+    {
+        speed = Camera.main.GetComponent<Main>().enemySpeed;
+        print(speed);
+    }
 
     void Update()
     {
