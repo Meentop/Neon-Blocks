@@ -8,6 +8,12 @@ public class Main : MonoBehaviour
 
     public float enemySpeed = 2f;
 
+    private void Start()
+    {
+        Score.Enemy = 0;
+        Score.phases = 0;
+    }
+
     private void Update()
     {
         if(Score.Enemy == 0)

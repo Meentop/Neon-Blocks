@@ -33,6 +33,7 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy")
         {
+            Camera.main.GetComponent<UI>().Lose();
             Destroy(gameObject);
         }
     }
