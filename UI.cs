@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class UI : MonoBehaviour
 {
-    [SerializeField] Text phases;
+    [SerializeField] Text phases, score, record;
     [SerializeField] Image panel;
 
     [SerializeField] GameObject lose;
@@ -20,6 +20,18 @@ public class UI : MonoBehaviour
     {
         lose.SetActive(true);
         panel.color = new Color(0f, 0f, 0f, 0.35f);
+        PlayerPrefs.SetInt("Score", Score.phases);
+        if (PlayerPrefs.HasKey("Record"))
+        {
+            if (Score.phases > PlayerPrefs.GetInt("Record"))
+                PlayerPrefs.SetInt("Record", Score.phases);
+        }
+        else
+        {
+            PlayerPrefs.SetInt("Record", Score.phases);
+        }
+        score.text = PlayerPrefs.GetInt("Score").ToString();
+        record.text = PlayerPrefs.GetInt("Record").ToString();
     }
 
     public void Return()
