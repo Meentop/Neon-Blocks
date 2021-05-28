@@ -7,3 +7,6 @@ Enemy.cs.meta
 Main.cs.meta
 Score.cs.meta
 UI.cs.meta
+Coin.cs.meta
+CoinsMover.cs.meta
+Mover.cs.meta

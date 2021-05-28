@@ -36,5 +36,11 @@ public class Player : MonoBehaviour
             Camera.main.GetComponent<UI>().Lose();
             Destroy(gameObject);
         }
+        else if (collision.gameObject.tag == "Coin")
+        {
+            Score.Enemy--;
+            Score.coins++;
+            Destroy(collision.gameObject);
+        }
     }
 }

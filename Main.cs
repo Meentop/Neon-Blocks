@@ -6,7 +6,7 @@ public class Main : MonoBehaviour
 {
     [SerializeField] Phases phases;
 
-    public float enemySpeed = 2f;
+    public float speed = 2f;
 
     private void Start()
     {
@@ -20,19 +20,27 @@ public class Main : MonoBehaviour
         {
             if (GameObject.FindGameObjectsWithTag("Player").Length == 1)
             {
-                if (Score.phases <= 6)
+                int randPhase = Random.Range(0, 4);
+                if (randPhase != 3)
                 {
-                    StartBlockPhase(2, 2, ref Score.phases);
+                    if (Score.phases <= 6)
+                    {
+                        StartBlockPhase(2, 2, ref Score.phases);
+                    }
+                    else if (Score.phases > 6 && Score.phases <= 12)
+                    {
+                        speed += 0.03f;
+                        StartBlockPhase(2, 3, ref Score.phases);
+                    }
+                    else if (Score.phases > 12)
+                    {
+                        speed += 0.03f;
+                        StartBlockPhase(3, 4, ref Score.phases);
+                    }
                 }
-                else if (Score.phases > 6 && Score.phases <= 12)
+                else if (randPhase == 3)
                 {
-                    enemySpeed += 0.03f;
-                    StartBlockPhase(2, 3, ref Score.phases);
-                }
-                else if (Score.phases > 12)
-                {
-                    enemySpeed += 0.03f;
-                    StartBlockPhase(3, 4, ref Score.phases);
+                    StartCoinsPhase(2, 2, ref Score.phases);
                 }
             }
         }
@@ -43,4 +51,11 @@ public class Main : MonoBehaviour
         phases.BlockPhase(Random.Range(min, max + 1), ref Score.Enemy);
         scorePhases++;
     }
+
+    private void StartCoinsPhase(int min, int max, ref int scorePhases)
+    {
+        phases.CoinsPhase(Random.Range(min, max + 1), ref Score.Enemy);
+        scorePhases++;
+    }
+
 }
