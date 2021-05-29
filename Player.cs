@@ -31,10 +31,10 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "Enemy" && Score.playerAlive)
         {
-            Camera.main.GetComponent<UI>().Lose();
-            Destroy(gameObject);
+            StartCoroutine(Lose());
+            Score.playerAlive = false;
         }
         else if (collision.gameObject.tag == "Coin")
         {
@@ -42,5 +42,11 @@ public class Player : MonoBehaviour
             Score.coins++;
             Destroy(collision.gameObject);
         }
+    }
+
+    IEnumerator Lose()
+    {
+        yield return new WaitForSeconds(1f);
+        Camera.main.GetComponent<UI>().Lose();
     }
 }

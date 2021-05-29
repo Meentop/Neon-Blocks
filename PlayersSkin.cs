@@ -15,7 +15,7 @@ public class PlayersSkin : MonoBehaviour
 
     private void Update()
     {
-        if (GameObject.FindGameObjectsWithTag("Player").Length == 1)
+        if (Score.playerAlive)
             transform.position = Vector3.Lerp(target.position, transform.position, speed);
         else
             Destroy(gameObject);

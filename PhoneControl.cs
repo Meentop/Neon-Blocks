@@ -16,7 +16,7 @@ public class PhoneControl : MonoBehaviour, IDragHandler, IBeginDragHandler
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (GameObject.FindGameObjectsWithTag("Player").Length == 1)
+        if (Score.playerAlive)
         {
             if (eventData.delta.x < 0 && eventData.delta.y > 0)
             {

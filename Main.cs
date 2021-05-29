@@ -12,13 +12,15 @@ public class Main : MonoBehaviour
     {
         Score.Enemy = 0;
         Score.phases = 0;
+        Score.coins = 0;
+        Score.playerAlive = true;
     }
 
     private void Update()
     {
         if(Score.Enemy == 0)
         {
-            if (GameObject.FindGameObjectsWithTag("Player").Length == 1)
+            if (Score.playerAlive)
             {
                 int randPhase = Random.Range(0, 4);
                 if (randPhase != 3)
