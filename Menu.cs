@@ -10,6 +10,7 @@ public class Menu : MonoBehaviour
 
     private void Start()
     {
+        Time.timeScale = 1;
         if(!PlayerPrefs.HasKey("AllCoins"))
         {
             PlayerPrefs.SetInt("AllCoins", 0);

@@ -6,6 +6,10 @@ public class Main : MonoBehaviour
 {
     [SerializeField] Phases phases;
 
+    [SerializeField] GameObject pausePanel, pauseButton;
+
+    bool pause = false;
+
     public float speed = 2f;
 
     private void Start()
@@ -14,6 +18,7 @@ public class Main : MonoBehaviour
         Score.phases = 0;
         Score.coins = 0;
         Score.playerAlive = true;
+        PauseOff();
     }
 
     private void Update()
@@ -27,16 +32,17 @@ public class Main : MonoBehaviour
                 {
                     if (Score.phases <= 6)
                     {
+                        speed += 0.02f;
                         StartBlockPhase(2, 2, ref Score.phases);
                     }
                     else if (Score.phases > 6 && Score.phases <= 12)
                     {
-                        speed += 0.03f;
+                        speed += 0.02f;
                         StartBlockPhase(2, 3, ref Score.phases);
                     }
                     else if (Score.phases > 12)
                     {
-                        speed += 0.03f;
+                        speed += 0.02f;
                         StartBlockPhase(3, 4, ref Score.phases);
                     }
                 }
@@ -60,4 +66,19 @@ public class Main : MonoBehaviour
         scorePhases++;
     }
 
+    public void PauseOn()
+    {
+        Time.timeScale = 0;
+        pause = true;
+        pausePanel.SetActive(true);
+        pauseButton.SetActive(false);
+    }
+
+    public void PauseOff()
+    {
+        Time.timeScale = 1;
+        pause = false;
+        pausePanel.SetActive(false);
+        pauseButton.SetActive(true);
+    }
 }

@@ -37,7 +37,7 @@ public class UI : MonoBehaviour
         }
         score.text = PlayerPrefs.GetInt("Score").ToString();
         record.text = PlayerPrefs.GetInt("Record").ToString();
-        coinInLose.text = Score.coins.ToString();
+        coinInLose.text = "+" + Score.coins.ToString();
         PlayerPrefs.SetInt("AllCoins", PlayerPrefs.GetInt("AllCoins") + Score.coins);
         allCoin.text = PlayerPrefs.GetInt("AllCoins").ToString();
     }
