@@ -9,7 +9,7 @@ public class UI : MonoBehaviour
     [SerializeField] Text phases, score, record, coinInGames, allCoin, coinInLose;
     [SerializeField] Image panel;
 
-    [SerializeField] GameObject lose;
+    [SerializeField] GameObject lose, newRecord;
 
     private void Start()
     {
@@ -29,7 +29,14 @@ public class UI : MonoBehaviour
         if (PlayerPrefs.HasKey("Record"))
         {
             if (Score.phases > PlayerPrefs.GetInt("Record"))
+            {
                 PlayerPrefs.SetInt("Record", Score.phases);
+                newRecord.SetActive(true);
+            }
+            else
+            {
+                newRecord.SetActive(false);
+            }
         }
         else
         {
@@ -50,5 +57,10 @@ public class UI : MonoBehaviour
     public void Menu()
     {
         SceneManager.LoadScene(0);
+    }
+
+    public void Delete()
+    {
+        PlayerPrefs.DeleteAll();
     }
 }

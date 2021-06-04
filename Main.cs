@@ -8,8 +8,6 @@ public class Main : MonoBehaviour
 
     [SerializeField] GameObject pausePanel, pauseButton;
 
-    bool pause = false;
-
     public float speed = 2f;
 
     private void Start()
@@ -23,33 +21,31 @@ public class Main : MonoBehaviour
 
     private void Update()
     {
-        if(Score.Enemy == 0)
+        if(Score.Enemy == 0 && Score.playerAlive)
         {
-            if (Score.playerAlive)
+            int randPhase = Random.Range(0, 4);
+            if (randPhase != 3)
             {
-                int randPhase = Random.Range(0, 4);
-                if (randPhase != 3)
+                if (Score.phases <= 6)
                 {
-                    if (Score.phases <= 6)
-                    {
-                        speed += 0.02f;
-                        StartBlockPhase(2, 2, ref Score.phases);
-                    }
-                    else if (Score.phases > 6 && Score.phases <= 12)
-                    {
-                        speed += 0.02f;
-                        StartBlockPhase(2, 3, ref Score.phases);
-                    }
-                    else if (Score.phases > 12)
-                    {
-                        speed += 0.02f;
-                        StartBlockPhase(3, 4, ref Score.phases);
-                    }
+                    speed += 0.02f;
+                    StartBlockPhase(2, 2, ref Score.phases);
                 }
-                else if (randPhase == 3)
+                else if (Score.phases > 6 && Score.phases <= 12)
                 {
-                    StartCoinsPhase(2, 2, ref Score.phases);
+                    speed += 0.02f;
+                    StartBlockPhase(2, 3, ref Score.phases);
                 }
+                else if (Score.phases > 12)
+                {
+                    speed += 0.02f;
+                    StartBlockPhase(3, 4, ref Score.phases);
+                }
+            }
+            else if (randPhase == 3)
+            {
+                speed += 0.02f;
+                StartCoinsPhase(2, 2, ref Score.phases);
             }
         }
     }
@@ -69,7 +65,6 @@ public class Main : MonoBehaviour
     public void PauseOn()
     {
         Time.timeScale = 0;
-        pause = true;
         pausePanel.SetActive(true);
         pauseButton.SetActive(false);
     }
@@ -77,7 +72,6 @@ public class Main : MonoBehaviour
     public void PauseOff()
     {
         Time.timeScale = 1;
-        pause = false;
         pausePanel.SetActive(false);
         pauseButton.SetActive(true);
     }

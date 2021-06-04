@@ -5,6 +5,10 @@ using UnityEngine.EventSystems;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] GameObject loseParticle;
+
+    [SerializeField] GameObject coinParticle;
+
     public void Move(int direction, ref int horizontal, ref int vertical)
     {
         if(direction == 0 && vertical != -1)
@@ -40,12 +44,14 @@ public class Player : MonoBehaviour
         {
             Score.Enemy--;
             Score.coins++;
+            Instantiate(coinParticle, transform.position, Quaternion.identity);
             Destroy(collision.gameObject);
         }
     }
 
     IEnumerator Lose()
     {
+        Instantiate(loseParticle, transform.position, Quaternion.identity);
         yield return new WaitForSeconds(1f);
         Camera.main.GetComponent<UI>().Lose();
     }
